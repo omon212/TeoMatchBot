@@ -1,5 +1,6 @@
 from aiogram.dispatcher.filters.state import State, StatesGroup
 
+
 class UserStates(StatesGroup):
     language = State()
 
@@ -13,3 +14,4 @@ class EngUsers(StatesGroup):
     name = State()
     photo = State()
     description = State()
+    correct = State()

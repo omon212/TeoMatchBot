@@ -1,5 +1,4 @@
-from aiogram.types import ReplyKeyboardMarkup,KeyboardButton
-from pyautogui import keyUp
+from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 
 lets_start = ReplyKeyboardMarkup(
     keyboard=[
@@ -9,7 +8,6 @@ lets_start = ReplyKeyboardMarkup(
     ],
     resize_keyboard=True
 )
-
 
 ok_btn = ReplyKeyboardMarkup(
     keyboard=[
@@ -23,16 +21,13 @@ ok_btn = ReplyKeyboardMarkup(
 gender_btn = ReplyKeyboardMarkup(
     keyboard=[
         [
-            KeyboardButton("I'm female")
-        ],
-        [
+            KeyboardButton("I'm female"),
             KeyboardButton("I'm male")
-        ]
+
+        ],
     ],
     resize_keyboard=True
 )
-
-
 
 lfgender_btn = ReplyKeyboardMarkup(
     keyboard=[
@@ -48,8 +43,27 @@ lfgender_btn = ReplyKeyboardMarkup(
 city_loc_btn = ReplyKeyboardMarkup(
     keyboard=[
         [
-            KeyboardButton("Send Location 📍",request_location=True)
+            KeyboardButton("Send Location 📍", request_location=True)
         ]
     ],
     resize_keyboard=True
 )
+
+correct_btn = ReplyKeyboardMarkup(
+    keyboard=[
+        [
+            KeyboardButton("Yes"),
+            KeyboardButton("Edit My Profile")
+        ]
+    ],
+    resize_keyboard=True
+)
+
+skip_btn = ReplyKeyboardMarkup(
+    keyboard=[
+        [
+            KeyboardButton("Skip")
+        ]
+    ]
+)
+
