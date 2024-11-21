@@ -1,9 +1,8 @@
 from aiogram.dispatcher import FSMContext
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-
 from loader import dp, bot
 from aiogram import types
-from states.user import EngUsers, UserStates
+from states.user import EngUsers, UserStates, Socials
 from keyboards.default.eng import *
 from utils.databace import *
 from .location import get_location_address
@@ -120,7 +119,7 @@ City: {user[5]}
 
 
 @dp.message_handler(state=EngUsers.correct, text=["Yes", "Edit My Profile"])
-async def accounc_data_finished(message: types.Message):
+async def accounc_data_finished(message: types.Message, state: FSMContext):
     if message.text == "Yes":
         random_user_data = await select_random()
         caption = f"""
@@ -135,14 +134,18 @@ City: {random_user_data[5]}
         random_user_btn = InlineKeyboardMarkup(
             inline_keyboard=[
                 [
-                    InlineKeyboardButton(text="❤️", callback_data=f"like_{message.from_user.id}"),
-                    InlineKeyboardButton(text="💌 / 📹", callback_data=f"send_msg_{message.from_user.id}"),
-                    InlineKeyboardButton(text="👎", callback_data=f"dislike_{message.from_user.id}"),
-                    InlineKeyboardButton(text="💤", callback_data=f"zzz_{message.from_user.id}")
+                    InlineKeyboardButton(text="❤️", callback_data=f"like_{random_user_data[1]}/{message.from_user.id}"),
+                    InlineKeyboardButton(text="💌 / 📹",
+                                         callback_data=f"send_msg_{random_user_data[1]}/{message.from_user.id}"),
+                    InlineKeyboardButton(text="👎",
+                                         callback_data=f"dislike_{random_user_data[1]}/{message.from_user.id}"),
+                    InlineKeyboardButton(text="💤", callback_data=f"zzz_{random_user_data[1]}/{message.from_user.id}")
                 ]
             ]
         )
         await message.answer_photo(random_user_data[8], caption=caption, reply_markup=random_user_btn)
+        await state.finish()
+        await Socials.state.set()
     elif message.text == "Edit My Profile":
         await message.answer("Your age?", reply_markup=types.ReplyKeyboardRemove())
         await EngUsers.age.set()

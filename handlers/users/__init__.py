@@ -5,3 +5,4 @@ from . import rus
 from . import eng
 from . import uzb
 from . import location
+from . import socials

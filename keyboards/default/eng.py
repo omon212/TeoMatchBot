@@ -64,6 +64,7 @@ skip_btn = ReplyKeyboardMarkup(
         [
             KeyboardButton("Skip")
         ]
-    ]
+    ],
+    resize_keyboard=True
 )
 

@@ -15,3 +15,8 @@ class EngUsers(StatesGroup):
     photo = State()
     description = State()
     correct = State()
+
+
+class Socials(StatesGroup):
+    state = State()
+    like = State()
